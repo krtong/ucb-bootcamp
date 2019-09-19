@@ -51,7 +51,7 @@ const students = [{
 }, {
     name: "John",
     location: "San Ramon",
-    keywords: ["Site director for after school enrichment program","Change careers"],
+    keywords: ["Site director for after school enrichment program", "Change careers"],
     isInTech: false
 }, {
     name: "Riley",
@@ -116,7 +116,7 @@ const students = [{
 }, {
     name: "Ashton",
     location: "Oakland",
-    keywords: ["Works in south Fremont", "Remarketing/Sales @ Tesla", "Bored", "Creative outlet", "flexible schedule", "Certificate"],
+    keywords: ["Works in south Fremont", "Remarketing/Sales @ Tesla", "Bored", "Creative outlet", "Flexible schedule", "Certificate"],
     isInTech: false
 }, {
     name: "Tinashe",
