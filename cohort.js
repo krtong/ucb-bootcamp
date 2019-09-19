@@ -14,7 +14,7 @@ const students = [{
     keywords: ["Career change", "Runs a maker space"],
     isInTech: false
 }, {
-    name: "Mone",
+    name: "Moné",
     location: "Oakland",
     keywords: ["Graduated in media studies in UK", "Liked web dev classes"],
     isInTech: false
