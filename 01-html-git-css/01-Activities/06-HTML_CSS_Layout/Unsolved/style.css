@@ -1,0 +1,18 @@
+div {
+    display: flex;
+}
+
+header {
+    align-items: center;
+    background-color: #666;
+    color: white;
+}
+
+
+section {
+    background-color: rgb(253, 248, 227) ;
+}
+
+section a {
+    color: red;
+}
