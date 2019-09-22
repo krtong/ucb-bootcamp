@@ -4,22 +4,22 @@
 }
 
 body {
+    color: #333;
     font-size: 24px;
     line-height: 32px;
-    color: #333;
 }
 
 header {
     background-color: #FFA500;
     color: #333;
-    padding: 20px;
     margin-bottom: 20px;
+    padding: 20px;
 }
 
 section {
-    padding: 20px;
-    margin-bottom: 20px;
     background: #FFA500;
+    margin-bottom: 20px;
+    padding: 20px;
 }
 
 .row-container {
@@ -27,56 +27,56 @@ section {
 }
 
 .left {
-    flex: 1;
-    color: white;
     background-color: #30948D;
+    color: white;
+    flex: 1;
 }
 
 .middle {
-    flex: 1;
-    color: white;
     background-color: #9E1212;
+    color: white;
+    flex: 1;
 }
 
 .right {
-    flex: 1;
-    color: white;
     background-color: #30948D;
+    color: white;
+    flex: 1;
 }
 
 .full {
+    background-color: #394549
+    color: white;
     height: 240px;
     padding: 20px;
     position: relative;
-    color: white;
-    background-color: #394549
 }
 
 aside {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      width: 33%;
-      height: 200px;
-      padding: 20px;
-      margin-left: 30px;
-      text-decoration-color: white;
-      background: #a6b747;
-      border: 1px solid #eee;
+    background: #a6b747;
+    border: 1px solid #eee;
+    height: 200px;
+    left: 20px;
+    margin-left: 30px;
+    padding: 20px;
+    position: absolute;
+    text-decoration-color: white;
+    top: 20px;
+    width: 33%;
 }
 .division {
-    padding: 20px;
-    margin-top: 20px;
     background: #214fb3;
+    margin-top: 20px;
+    padding: 20px;
 }
 
 .section-content {
-    width: 67%;
-    position: relative;
     left: 33%;
+    position: relative;
+    width: 67%;
 }
 
 footer {
-    padding: 20px;
     background: #FFA500;
+    padding: 20px;
 }
