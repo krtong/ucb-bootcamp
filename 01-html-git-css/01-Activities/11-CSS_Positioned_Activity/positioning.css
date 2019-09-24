@@ -1,0 +1,20 @@
+body {
+    margin: 25px;
+
+}
+.container {
+    display: flex;
+    margin: 25%;
+}
+
+.position-fixed {
+    padding: 50px;
+    margin: 50px;
+    background-color: blue;
+}
+.position-relative {
+
+}
+.position-absolute {
+
+}
