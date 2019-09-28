@@ -4,87 +4,54 @@
 	<meta charset="utf-8">
 	<title></title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="./src/css/reset.css" type="css/text">
-	<link rel="stylesheet" href="./src/css/style.css" type="css/text">
+	<link rel="stylesheet" href="./src/css/reset.css" type="text/css">
+	<link rel="stylesheet" href="./src/css/style.css" type="text/css">
 </head>
 
 <body>
-
-	<header>
-		<nav>
-			Your Name
-			<ul>
-				<li>About</li>
-				<li>Portfolio</li>
-				<li>Contact</li>
-			</ul>
-		</nav>
-	</header>
-
-	<section id="About-Me">
-		<article>
-			<h1>About Me</h1>
-			<h2></h2>
-			<h3></h3>
-			<p><img src="./src/img/cat.jpg">
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vestibulum luctus
-				felis, ac rhoncus nunc porttitor condimentum. Mauris sit amet dolor eu elit varius
-				varius facilis id arcu. Proin vel dui mass. Nunc rhoncus fringilla pharetra.
-				Vestibulum bibendum consectetur euismod. Proin commodo purus vitae sollicitudin
-				consectetur.</p>
-			<p>Donec vehicula lacus at leo lacinia. In et ex ultrices, ultirecs neque non, pretium odio. Nunc id eros
-				iaculis, pulvinar quam eget, egestas mauris.</p>
-			<p>Suspendisse dictum, arcu at convalllis faucibus, quam sapien tincidunt nunc, sit amet egestas nibh tortor et
-				mi.
-				Orci varius nanoque penatbus et magris dis partuient montes, nascetur ridiculus mus.
-			</p>
-		</article>
-	</section>
-
-
-	<section id="Contact">
-		<h1>Contact</h1>
-		<form action="/action_page.php">
-			Name
-			<input type="text" name="name" value="John Smith">
-			Email
-			<input type="text" name="email" value="example@gmail.com">
-			Message
-			<textarea name="message" rows="10" cols="30"></textarea>
-			<input type="submit" value="Submit">
-		</form>
-	</section>
-
-
-	<section id="Portfolio">
-		<div class="Grid">
-			<div class="Box">
-				<h1>Hangman</h1>
-				<img src="./src/img/hangman.jpg">
+	<div class="container">
+		<!-- Header, Logo, Nav Bar -->
+		<header>
+			<div class="logo"> Your Name </div>
+			<div class="menu">
+				<nav>
+					<ul>
+						<li><a href="./index.html">About</a></li>
+						<li><a href="./portfolio.html">Portfolio</a></li>
+						<li><a href="./contact.html">Contact</a></li>
+					</ul>
+				</nav>
 			</div>
-			<div class="Box">
-				<h1>RPG Game</h1>
-				<img src="./src/img/rpgGame.jpg">
-			</div>
-			<div class="Box">
-				<h1>Trivia Game</h1>
-				<img src="./src/img/triviaGame.jpg">
-			</div>
-			<div class="Box">
-				<h1>Hangman</h1>
-				<img src="./src/img/rugersInfoWidget.jpg">
-			</div>
-			<div class="Box">
-				<h1>Hangman</h1>
-				<img src="./src/img/rockPaperScissors.jpg">
-			</div>
-		</div>
-	</section>
+		</header>
 
+		<!-- About Me -->
+		<section class="item-b" id="About-Me">
+			<article>
+				<h1>About Me</h1>
+				<h2></h2>
+				<h3></h3>
+				<p><img src="./src/img/cat.jpg">
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vestibulum luctus
+					felis, ac rhoncus nunc porttitor condimentum. Mauris sit amet dolor eu elit varius
+					varius facilis id arcu. Proin vel dui mass. Nunc rhoncus fringilla pharetra.
+					Vestibulum bibendum consectetur euismod. Proin commodo purus vitae sollicitudin
+					consectetur.</p><br />
+				<p>Donec vehicula lacus at leo lacinia. In et ex ultrices, ultirecs neque non, pretium odio. Nunc id
+					eros
+					iaculis, pulvinar quam eget, egestas mauris.</p><br />
+				<br />
+				<p>Suspendisse dictum, arcu at convalllis faucibus, quam sapien tincidunt nunc, sit amet egestas nibh
+					tortor et
+					mi.
+					Orci varius nanoque penatbus et magris dis partuient montes, nascetur ridiculus mus.
+				</p>
+			</article>
+		</section>
 
-	<footer>
-		Copyright ©
-	</footer>
+		<!-- Footer -->
+		<footer>
+			Copyright ©
+		</footer>
 
 </body>
 
