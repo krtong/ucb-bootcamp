@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Conditional Demo</title>
+  </head>
+  <body>
+
+    <script type="text/javascript">
+    //Create a website from scratch that asks if users eat steak.
+    let steakEater = confirm(`Do you like steak?`);
+    //If they respond with 'yes' write the following to the apge "Here's a steak sandwich"
+    //If they respond with "no"; write the folowing to the page: "Here's A Tofu Stir Fry"
+     document.write(steakEater ? `<h1>Here's a steak Sandwich</h1>` : `<h1> Here's a tofu stirfry </h1>`);
+     let birthYear = prompt(`What year are you born?`);
+     
+     //Ask what the user's birth year is. I fthey are under 21, alert the following "No Sake For you1"
+    document.write(birthYear <= 1998 ?  `<h1> Here's some sake. <h1>` : `<i>No sake for you</i>`);
+    
+    </script>
+  </body>
+</html>

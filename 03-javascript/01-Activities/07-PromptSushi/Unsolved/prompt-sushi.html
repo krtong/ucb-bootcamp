@@ -1,16 +1,26 @@
 <!DOCTYPE html>
 <html lang="en-us">
-  <head>
-    <meta charset="UTF-8">
-    <title>Sushi Prompt - Unsolved</title>
-  </head>
-  <body>
-
-    <script type="text/javascript">
-
+<head>
+  <meta charset="UTF-8">
+  <title>Sushi Prompt - Unsolved</title>
+</head>
+<body>
+  <script type="text/javascript">
+  
     // Write code here!
+    let thing = prompt(`Name a thing.`),  //prompt resolves to a string.
+      promptOne = confirm(`Do you like ${thing}?`), //confirm resolves to a boolean.
+      promptTwo = prompt(`What kind of ${thing} do you like?`); 
+    let ending = promptOne ? `You like ${promptTwo} ${thing}.` : `You don't like ${thing}.`;
+    alert(ending);
+    document.write(`
+        <h1> Thing: </h1>  ${thing} </br>
+        <h1> Ending: </h1> ${ending}
+    
+    `)
 
-    </script>
+  </script>
 
-  </body>
+
+</body>
 </html>
