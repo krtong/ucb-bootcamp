@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Rock Paper Scissors Part 2
+  </title>
+</head>
+
+<body style="background-color: rgb(27, 37, 0); color: greenyellow; font-family: monospace; align-items: center;">
+  <div id="game">
+  </div>
+  <script type="text/javascript">
+    let computerScore = 0,
+      humanScore = 0,
+      ties = 0,
+      htmlNode = document.getElementById("game");
+    computerChoices = ["r", "p", "s"];
+
+    document.onkeyup = function (event) {
+      var userGuess = event.key;
+      var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+
+      if (computerChoices.indexOf(userGuess) >= 0) {
+        if (userGuess === 'r' && computerGuess === 's' ||
+          userGuess === 'p' && computerGuess === 'r' ||
+          userGuess === 's' && computerGuess === 'p') {
+          humanScore++
+        };
+        if (computerGuess === 'r' && userGuess === 's' ||
+          computerGuess === 'p' && userGuess === 'r' ||
+          computerGuess === 's' && userGuess === 'p') {
+          computerScore++
+        };
+        if (computerGuess === 'r' && userGuess === 'r' ||
+          computerGuess === 'p' && userGuess === 'p' ||
+          computerGuess === 's' && userGuess === 's') {
+          ties++
+        };
+        let output = `Human: ${humanScore} Computer: ${computerScore} Ties: ${ties}`
+        console.log(output);
+        htmlNode.innerHTML = `<h1> ${output} </h1>`;
+      }
+    }
+  </script>
+</body>
+
+</html>

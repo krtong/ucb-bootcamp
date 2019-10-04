@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html lang="en-us">
-  <head>
-    <meta charset="UTF-8">
-    <title>Loops</title>
-    <script src="javascript.js"></script>
-  </head>
-  <body>
 
-    <h1>Open the console to see the magic!</h1>
+<head>
+  <meta charset="UTF-8">
+  <title>Loops</title>
+  <script src="javascript.js"></script>
+</head>
 
-    <script>
-      const myFarm = ['chickens', 'pigs', 'hoerse', 'ostriches'];
-      const firstLetter = ['a', 'c', 'o', 'A', 'C', 'O']
-      for (let i = 0; i < myFarm.length; i++) {
-        if (firstLetter.indexOf(myFarm[i][0]) >= 0) console.log(`${myFarm[i]} starts with the letter ${myFarm[i][0]}`)
-      }
-   
-    </script>
-    
-  </body>
+<body>
+
+  <h1>Open the console to see the magic!</h1>
+
+  <script>
+    const myFarm = ['chickens', 'pigs', 'hoerse', 'ostriches'];
+    const letters = ['a', 'c', 'o'];
+    for (let i = 0; i < myFarm.length; i++) {
+      const firstLetter = myFarm[i][0];
+      if (letters.indexOf(firstLetter) >= 0) alert(`${myFarm[i]} starts with the letter ${firstLetter}`);
+    }
+  </script>
+
+</body>
+
 </html>
