@@ -8,41 +8,56 @@
 </head>
 
 <body style="background-color: rgb(27, 37, 0); color: greenyellow; font-family: monospace; align-items: center;">
-  <div id="game">
+  <div class="container">
+    <div id="game">
+    </div>
+    <div id="img"></div>
   </div>
   <script type="text/javascript">
-    let computerScore = 0,
-      humanScore = 0,
-      ties = 0,
-      htmlNode = document.getElementById("game");
-    computerChoices = ["r", "p", "s"];
-
+    let [computerScore, humanScore, ties] = [0, 0, 0];
+    let htmlNode = document.getElementById("game");
+    let image = document.getElementById("img");
+    let rps = ["r", "p", "s"];
+    let beats = {
+      'r': 's',
+      'p': 'r',
+      's': 'p'
+    };
+    let words = {
+      'r': 'rock',
+      'p': 'paper',
+      's': 'scissors'
+    };
+    let img = '';
+    let winImg = ''
+    let result = '';
     document.onkeyup = function (event) {
-      var userGuess = event.key;
-      var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+      let [userGuess, computerGuess] = [event.key, rps[Math.floor(Math.random() * 3)]];
 
-      if (computerChoices.indexOf(userGuess) >= 0) {
-        if (userGuess === 'r' && computerGuess === 's' ||
-          userGuess === 'p' && computerGuess === 'r' ||
-          userGuess === 's' && computerGuess === 'p') {
+      if (rps.indexOf(userGuess) >= 0) {
+        if (userGuess === beats[computerGuess]) {
+          result = 'Human wins.';
           humanScore++
         };
-        if (computerGuess === 'r' && userGuess === 's' ||
-          computerGuess === 'p' && userGuess === 'r' ||
-          computerGuess === 's' && userGuess === 'p') {
+        if (computerGuess === beats[userGuess]) {
+          result = 'Human loses.';
           computerScore++
         };
-        if (computerGuess === 'r' && userGuess === 'r' ||
-          computerGuess === 'p' && userGuess === 'p' ||
-          computerGuess === 's' && userGuess === 's') {
-          ties++
-        };
-        let output = `Human: ${humanScore} Computer: ${computerScore} Ties: ${ties}`
-        console.log(output);
-        htmlNode.innerHTML = `<h1> ${output} </h1>`;
-      }
-    }
+        if (computerGuess === userGuess) {
+          result = 'Human ties.';
+          ties++;
+        }
+
+        let scoreBoard = `Human: ${humanScore} Computer: ${computerScore} Ties: ${ties}`
+        console.log(scoreBoard);
+        htmlNode.innerHTML =
+          `Human chose ${words[userGuess]}. Computer chose ${words[computerGuess]}. ${result} <h1> ${scoreBoard} </h1>`;
+        if (result === 'Human loses.') image.innerHTML = `<img src="../Images/lose.jpg">`;
+        if (result === 'Human wins.') image.innerHTML = `<img src="../Images/win.jpg">`;
+      };
+    };
   </script>
 </body>
+
 
 </html>
