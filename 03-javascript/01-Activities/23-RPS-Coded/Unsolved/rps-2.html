@@ -8,7 +8,7 @@
 </head>
 
 <body style="background-color: rgb(27, 37, 0); color: greenyellow; font-family: monospace; align-items: center;">
-  <div class="container">
+  <div class="container" style="display: flex; justify-content: space-around; padding: 50px;">
     <div id="game">
     </div>
     <div id="img"></div>
@@ -47,7 +47,6 @@
           result = 'Human ties.';
           ties++;
         }
-
         let scoreBoard = `Human: ${humanScore} Computer: ${computerScore} Ties: ${ties}`
         console.log(scoreBoard);
         htmlNode.innerHTML =
