@@ -5,30 +5,35 @@
     <title>Favorite TV Shows</title>
   </head>
   <body>
+    <ul id="list">
 
+    </ul>
     <script type="text/javascript">
 
-      // ????
+      // declare a variable to store three tv shows as elements in an array.
       var favTVshows = [];
+      // declare a variable to store a single tv show to 
       var tvShow;
 
-      // For Loop Elements Repeats ??? Times
+      // For Loop Elements Repeats 3 Times
       for (var i = 1; i < 4; i++) {
 
-        // ????
+        // render in the document an alert that asks for each tv show. 
+        // tvShow's value resolves to the string inputted by the user in the prompt.
         tvShow = prompt("What's your #" + i + " favorite TV show?");
 
-        // ????
+        // push the value of tvShow to the array. 
         favTVshows.push(tvShow);
       }
 
-      // ????
+      // iterate throug the 
       for (var j = 0; j < favTVshows.length; j++) {
 
         // ???
-        alert(favTVshows[j]);
+        // alert(favTVshows[j]);
       }
-
+      let list = document.getElementById("list");
+      list.innerHTML = (favTVshows.map((x, i) => `<li> #${i+1}) ${x} </li >`))
     </script>
 
   </body>
