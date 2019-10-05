@@ -99,11 +99,6 @@ const students = [{
     keywords: ["Real Estate", "CSUEB/Hayward", "Wants the challenge"],
     isInTech: false
 }, {
-    name: "Sy",
-    location: "Alameda",
-    keywords: ["Name pronounced 'See'", "UCSF - Parking lot security", "Amazon seller", "Has friends in tech", "Has an 'IN' in tech!"],
-    isInTech: false
-}, {
     name: "Cody",
     location: "Berkeley",
     keywords: ["Went to UCB", "Works at Adventure Travel company", "Logistics", "Jealous of his friends", "Wants to improve skills for career"],
