@@ -1,0 +1,70 @@
+.clean-navbar .navbar-nav .nav-item {
+    border-right: 2px #eee
+}
+
+.h3,
+h3 {
+    position: absolute;
+    top: 120px;
+    left: 20px;
+    width: 280px
+}
+
+.box-logo {
+    background-color: #71a6a6;
+    color: white !important;
+    padding: 15px 25px;
+    border: 0;
+}
+
+.serif {
+    font-family: 'Arbutus Slab', serif;
+}
+
+footer div {
+    color: rgb(44, 49, 52) !important;
+    background-color: rgb(91, 91, 91) !important;
+    margin: 0 0 0 0 !important;
+    height: 60px !important;
+    padding: 0 0 0 0 !important;
+    width: 100% !important;
+    font-family: 'Arbutus Slab', serif;
+}
+
+footer p {
+    font-family: 'Arbutus Slab', serif !important;
+}
+
+h3 {
+    font-size: 18px !important;
+    background-color: #71a6a6 !important;
+    color: rgb(255, 255, 255) !important;
+    font-family: 'Arbutus Slab', serif !important;
+    padding: 13px !important;
+    border-radius: 0 20px 20px 0 !important;
+}
+
+.my-primary {
+    color: #71a6a6 !important;
+}
+
+ul li {
+    font-family: Amiko, sans-serif !important;
+}
+
+main {
+    padding: 60px 0 0 0 !important;
+}
+
+footer {
+    background-color: #71a6a6 !important;
+    padding: 5px 0 0 0 !important;
+}
+
+form {
+    border-top: 2px solid #71a6a6 !important;
+}
+
+form button:hover {
+    background-color: #a6719f !important;
+}
