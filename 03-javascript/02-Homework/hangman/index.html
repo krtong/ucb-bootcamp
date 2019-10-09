@@ -21,10 +21,8 @@
         <!-- img will change as player guesses incorrectly -->
 
         <!-- i need a string of divs that will allow user input -->
-
+        <div id="message"></div>
         <div id="lets-play"><button id="play-button">Start</button></div>
-        <div id="you-won" style="display: none">You won!</div>
-        <div id="you-lose" style="display: none">You died!</div>
         <div id="human-or-computer" style="display: none;">
             Would you like to play against a human or computer?
             <button type="button" id="human">Human</button>
@@ -40,7 +38,7 @@
             <div id="incorrect-guesses">Guesses: <span id="display-guesses"></span></div>
             <div id="word-array">Board: <span id="display-board"></span></div>
             Guess letter:
-            <input type="text" id="guess-input"></input>
+            <input type="text" id="guess-input" minlength="1" maxlength="1"></input>
             <button type="button" id="submit-guess">Guess letter</button>
         </div>
     </div>
