@@ -1,0 +1,45 @@
+body{
+    background-color: rgb(24, 24, 24);
+} 
+    
+
+/* the main div container of the game
+*/
+#hangman {
+    display: flex;
+    margin: 15% 35%;
+    background-color: white ;
+    padding: 50px;
+    border: 2px solid black;
+    border-radius: 5px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 18px;
+}
+
+/* The game cycles through these divs
+*/
+#play-button,
+#message,
+#lets-play,
+#humans-or-computer,
+#enter-word,
+#game-board {
+    
+}
+
+/* The inner divs of the gameboard.
+*/
+#lives,
+#incorrect-guesses,
+#word-array,
+#guess-input,
+#word-array,
+#submit-guess {
+    padding: 10px;
+    align-content: center;
+}
+
+img {
+    width: 300px;
+    height: relative;
+}
