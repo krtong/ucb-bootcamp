@@ -55,8 +55,13 @@ const guessLetter = guessedLetter => {
 const generateWord = humanOrComputer => {
     if (humanOrComputer === "human") {
         word = div.id("form-input").value.toLowerCase();
-        div.hide("enter-word");
+        if (word.length > 0) div.hide("enter-word");
+        else {
+            div.id('enter-word-message').style = "color: red;";
+            return;
+        }
     };
+    
     if (humanOrComputer === "computer") {
         let wordArray = [ "calculator","disasterous","evaporate","troubled","grandmother","approval","unarmed",
             "console","broadcast","temporary","breakfast","workable","opposite","talk","acceptable","ladybug",
