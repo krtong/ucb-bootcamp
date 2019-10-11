@@ -3,33 +3,36 @@
 
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Hangman</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 
 <body>
 
     <div id="hangman" class="container">
-        <div id="lets-play"><div><h1>Hangman</h1></div>
-        <div>Press start to continue.</div>
-            <button id="play-button">Start</button></div>
+        <div id="lets-play">
+            <div>
+                <h1>Hangman</h1>
+            </div>
+            <div>Press start to continue.</div>
+            <button id="play-button">Start</button>
+        </div>
         <div id="human-or-computer" style="display: none;">
-            Would you like to play against a human or computer?<br/>
+            Would you like to play against a human or computer?<br />
             <button type="button" id="human">Human</button>
             <button type="button" id="computer">Computer</button>
         </div>
         <div id="enter-word" style="display: none;">
-            <div id="enter-word-message">Player 1: Please enter word.</div> 
+            <div id="enter-word-message">Player 1: Please enter word.</div>
             <input type="text" id="form-input"></input>
             <button type="button" id="submit-word">Let's play</button>
         </div>
         <div id="game-board" style="display: none;">
             <div id="image"></div>
             <div id="message"></div>
-            <div id="word-array"><h1 id="display-board"></h1></div>
+            <div id="word-array">
+                <h1 id="display-board"></h1>
+            </div>
             <div id="lives">Lives: <span id="display-lives"></span></div>
             <div id="incorrect-guesses">Guesses: <span id="display-guesses"></span></div>
             <input type="text" id="guess-input" minlength="1" maxlength=1"></input>
