@@ -1,13 +1,12 @@
 //helper functions
-let [word, livesLeft, wrongGuesses] = ["", 6, []];
-let wordBoard = [];
+let [word, livesLeft, wrongGuesses, wordBoard] = ["", 6, [], []];
 
 const div = {
     id: id => document.getElementById(id),
-    show: id => document.getElementById(id).style = `display: center; margin: 50px;`,
-    hide: id => document.getElementById(id).style = `display: none;`,
-    reset: id =>  document.getElementById(id).value = "",
-    change: (id, change) => document.getElementById(id).innerHTML = change,
+    reset: id =>  div.id(id).value = "",
+    hide: id => div.id(id).style = `display: none;`,
+    show: id => div.id(id).style = `display: ;`,
+    change: (id, change) => div.id(id).innerHTML = change,
     swap: (oldId, newId) => {
         div.hide(oldId);
         div.show(newId);
@@ -16,10 +15,10 @@ const div = {
 
 const initializeBoard = () => {
     div.show("game-board");
-    div.change("image", `<img src="./assets/img/hm${livesLeft}.gif">`)
-    div.change("display-lives", `${livesLeft}/6`);
     div.change("display-guesses", wrongGuesses);
+    div.change("display-lives", `${livesLeft}/6`);
     div.change("display-board", wordBoard.join(''));
+    div.change("image", `<img src="./assets/img/hm${livesLeft}.gif">`)
 };
 
 const guessLetter = guessedLetter => {
@@ -27,8 +26,8 @@ const guessLetter = guessedLetter => {
     div.reset("guess-input");
 
     let letter = guessedLetter.toLowerCase();
-    let guessIsNotALetter = "abcdefghijklmnopqrstuvwxyz".indexOf(letter) === -1;
     let letterExistsInWord = word.indexOf(letter) > -1;
+    let guessIsNotALetter = "abcdefghijklmnopqrstuvwxyz".indexOf(letter) === -1;
     let letterAlreadyGuessed = wrongGuesses.indexOf(letter) > -1 || wordBoard.indexOf(letter) > -1;
 
     if (letterAlreadyGuessed) div.change("message", "letter was already guessed.");
