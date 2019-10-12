@@ -12,7 +12,6 @@ if (opponent) {
     let words = ['calculator', 'disasterous', 'evaporate', 'troubled', 'grandmother', 'approval', 'unarmed', 'console', 'broadcast', 'temporary', 'breakfast', 'workable', 'opposite', 'talk', 'acceptable', 'ladybug', 'title', 'price', 'galvanize', 'trinity', 'Zuckerberg', 'railway', 'commons', 'impel', 'dogma', 'boundless', 'tactile']
     word = words[Math.floor(Math.random() * Math.floor(words.length - 1))].toLowerCase()
 }
-console.log(word);
 //display a blank array showing the number of
 let board = Array(word.length).fill(' _ ');
 let hp = 5;

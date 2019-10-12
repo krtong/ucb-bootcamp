@@ -1,7 +1,6 @@
 //helper functions
-let [word, livesLeft, wrongGuesses, wordBoard] = ["", 6, [],
-  []
-];
+let [word, livesLeft, wrongGuesses, wordBoard] = ["", 6, [], []];
+
 
 const div = {
   id: id => document.getElementById(id),
@@ -46,6 +45,8 @@ const guessLetter = guessedLetter => {
   };
 
   if (livesLeft < 1) {
+    div.hide("guess-input");
+    div.hide("submit-guess");
     div.change("message", `You lose! The word was "${word}." Game will reset in five seconds.`);
     setTimeout(() => location.reload(), 5000);
   };

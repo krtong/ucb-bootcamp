@@ -15,7 +15,7 @@ body {
         padding: 10px }
     .container img {
         height: relative;
-        width: 300px }
+        width: 100% }
     .container button {
         background-color: teal;
         border-radius: 4px;
