@@ -1,28 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>jQuery Calculator</title>
+  <meta charset="UTF-8">
+  <title>jQuery Calculator</title>
 
-    <!-- Added link to the jQuery Library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!-- Added link to the jQuery Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-    <!-- Added a link to Bootstrap-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <!-- Added a link to Bootstrap-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
-    <!-- Added a link to our external stylesheet-->
-    <link rel="stylesheet" href="style.css">
+  <!-- Added a link to our external stylesheet-->
+  <link rel="stylesheet" href="style.css">
 
 </head>
+
 <body>
 
-<!-- Jumbotron for Title -->
-<div class="jumbotron">
+  <!-- Jumbotron for Title -->
+  <div class="jumbotron">
     <h1 class="text-center">jQuery Calculator</h1>
     <h3 class="text-center">Perform basic mathematic operations using the power of jQuery!</h3>
-</div>
+  </div>
 
-<div class="container">
+  <div class="container">
 
     <div class="row">
 
@@ -73,16 +75,206 @@
     </div>
   </div>
 
-<script type="text/javascript">
+  <script type="text/javascript">
+    $(document).ready(function () {
 
-$(document).ready(function() {
+      //variable accumulator = 0;
+      //variable number = string
+      //variable operation = "blank" || "+" || "-" || "/" || "^" || "*"
 
-// Your code here...
+      //when the page loads, display the variable called "accumulator"
+
+      //IF (number button is pressed) 
+      //IF (accumulater is displayed) hide variable called "accumulator" and show "number"
+      ////IF (number is displayed) concat variable "number" with number associated with button.
+
+      //IF (equals is pressed) {
+      ////IF (operation has a value) {
+      //////parse integer from variable "number" and execute last pressed operation.
+      //////assign sum to variable called "accumulator"
+      //////hide variable "number"
+      //////display variable "accumulator"
+      //////variable number = "" blank
+      //////variable operation = blank
+
+      //IF (operation has no value) 
+      ////nothing happens
+
+      //IF (clear button is pressed) 
+      ////variable number = "" blank
+      ////variable accumulator = 0;
+      ////variable operation = blank;
+
+      //functionIF (operator button is pressed) 
+
+      ////IF (variable "operator" has value)
+      ////// run equals function
+
+      ////THEN...
+      ////// variable "operator" = cooresponding operator with button press...
 
 
-});
+      /////////////////////////////////////////////////////////////////////////////////
 
-</script>
 
+      $(document).ready(function () {
+
+        //variable accumulator = 0;
+        let accumulator = 0;
+        //variable number = string
+        let number = "";
+        //variable operation = "blank" || "+" || "-" || "/" || "^" || "*"
+        let operation = "blank";
+
+        //onload: when the page loads, display the variable called "accumulator"
+        let display = "accumulator"; //either will be "accumulator" or "number"
+        $("#result").text(accumulator);
+
+        //function: IF (number button is pressed) 
+        $(".number").click(function (event) {
+          console.log($(this).val());
+          //IF (operation = "blank")
+          if (operation === "blank") {
+            ////accumulator = 0
+            accumulator = 0;
+          }
+
+          //IF (accumulater is displayed) 
+          if (display === "accumulator") {
+            ////hide variable called "accumulator" and show "number"
+            display = "number";
+            $("#result").text(result);
+          };
+          ////IF (number is displayed) 
+          if (display === "number") {
+            //////concat variable "number" with number associated with button.
+            number += $(this).val(); //some jquery bullshit
+            $("#result").text(number);
+          };
+        });
+
+        //function: IF (equals is pressed) {
+        $(".equal").click(function (event) {});
+        const equals = () {
+          ////IF (operation has a value) {
+          if (operation !== "blank") {
+            //////parse integer from variable "number" and execute last pressed operation.
+            let sum = number + operation + accumulator;
+            //////variable "accumulator" = sum
+            accumulator = JSON.parse(sum);
+            //////hide variable "number." display variable "accumulator"
+            display = "accumulator";
+            $("#result").text(accumulator);
+            //////variable number = "" blank
+            number = "";
+            //////variable operation = blank
+            operation = "blank";
+            ////IF (operation has no value) 
+            //////nothing happens
+          }
+        }
+
+        //function: IF (clear button is pressed)
+        $(".clear").click(function (event) {
+          ////IF (if variable "operator" = 'blank')
+          if (operation === "blank") {
+            //////variable number = "" //blank;
+            number = "";
+          }
+
+          ////IF (variable "operator" = "*^+-")
+          if (operation !== "blank") {
+            //////variable number = "" blank
+            number = "";
+            //////variable accumulator = 0;
+            accumulator = 0;
+            //////variable operation = blank;
+            operation = "blank";
+          }
+
+        })
+
+        //function: IF (operator button is pressed) 
+        $(".operator").click(function (event) {
+          ////IF (variable "operator" has value)
+          if (operation !== "blank") {
+            ////// run equals function
+
+          }
+
+          ////THEN...
+          ////// variable "operator" = cooresponding operator with button press...
+        });
+
+
+
+      });
+
+    });
+    /////////////////////////////////////////////////////////////////////////////////
+
+
+    $(document).ready(function () {
+      let accumulator = 0;
+      let number = "";
+      let operation = "blank";
+      let display = "accumulator"; //either will be "accumulator" or "number"
+
+
+      $("#result").text(accumulator);
+
+      $(".number").click(function (event) {
+        console.log($(this).val());
+        if (operation === "blank") {
+          accumulator = 0;
+        }
+
+        if (display === "accumulator") {
+          display = "number";
+          $("#result").text(result);
+        };
+        if (display === "number") {
+          number += $(this).val(); //some jquery bullshit
+          $("#result").text(number);
+        };
+      });
+
+      $(".equal").click(function (event) {});
+      const equals = () {
+        if (operation !== "blank") {
+          let sum = number + operation + accumulator;
+          accumulator = JSON.parse(sum);
+          display = "accumulator";
+          $("#result").text(accumulator);
+          number = "";
+          operation = "blank";
+        }
+      }
+
+      $(".clear").click(function (event) {
+        if (operation === "blank") {
+          number = "";
+        }
+
+        if (operation !== "blank") {
+          number = "";
+          accumulator = 0;
+          operation = "blank";
+        }
+
+      })
+
+      $(".operator").click(function (event) {
+        if (operation !== "blank") {
+
+        }
+
+      });
+
+
+
+    });
+  </script>
 </body>
+
 </html>
