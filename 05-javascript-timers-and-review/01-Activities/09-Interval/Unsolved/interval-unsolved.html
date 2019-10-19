@@ -27,18 +27,18 @@
     var number = 100;
 
     var intervalId;
-
+      var interval = 1000;
     $("#stop").on("click", stop);
 
     $("#resume").on("click", run);
 
     function run() {
-      intervalId = setInterval(decrement, 1000);
+      intervalId = setInterval(decrement, interval);
     }
 
     function decrement() {
 
-      number--;
+      number --;
 
       $("#show-number").html("<h2>" + number + "</h2>");
 
