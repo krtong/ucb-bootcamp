@@ -4,6 +4,7 @@
 <head>
   <meta charset="utf-8">
   <title>Single AJAX</title>
+  <div id="testapi"> </div>
 </head>
 
 <body>
@@ -19,6 +20,7 @@
     }).then(function(response) {
       console.log(response);
       console.log(response.Writer);
+      $("#testapi").text(response.Title);
     });
 // ---------------------------------------------------------
 
