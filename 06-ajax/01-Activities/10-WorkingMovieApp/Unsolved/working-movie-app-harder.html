@@ -48,7 +48,24 @@
         $.ajax({
           url: queryURL,
           method: "GET"
-        }).then(function(response) {
+        }).then(function(a) {
+  
+          const img = a.Poster;
+          const plot = a.Plot;
+          const title = a.Title;
+          console.log(response)
+          let html = `
+          <div class="card">\
+            <img src="${img}">
+            <div>${title}</div>
+            <div><${plot}/div>
+            <div></div>
+            <div></div>
+          </div>
+          `;
+
+
+          $("#movies-view").append(html)
 
           // YOUR CODE GOES HERE!!!
 

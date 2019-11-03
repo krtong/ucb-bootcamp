@@ -12,25 +12,25 @@
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript">
-    //
+    //on click button on line 10, invoke function
     $("#cat-button").on("click", function() {
 
-      //
+      //giphy API 
       var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=BkaUZZWcFij6J7AoQj3WtPb1R2p9O6V9&tag=cats";
 
-      //
+      //AJAX GET request
       $.ajax({
         url: queryURL,
         method: "GET"
       })
 
-        //
+        //on successful AJAX response invoke this function
         .then(function(response) {
 
-          //
+          //imageURL resolves to the image
           var imageUrl = response.data.image_original_url;
 
-          //
+          //create img html
           var catImage = $("<img>");
 
           //

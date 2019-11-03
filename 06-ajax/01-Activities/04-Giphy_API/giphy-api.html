@@ -3,23 +3,97 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Giphy API</title>
+  <title>Favorite Movies</title>
+  <style type="text/css">
+    button,
+    div,
+    form,
+    input {
+      margin: 10px;
+    }
+  </style>
 </head>
 
 <body>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script type="text/javascript">
-    // Example queryURL for Giphy API
-    var queryURL = "https://api.giphy.com/v1/gifs/trending?api_key=BkaUZZWcFij6J7AoQj3WtPb1R2p9O6V9";
 
-    $.ajax({
-      url: queryURL,
-      method: "GET"
-    }).then(function(response) {
-      console.log(response);
-    });
-  </script>
+  <div class="container">
+    <h1>Movie Search</h1>
 
+    <!-- Rendered Buttons will get Dumped Here  -->
+    <div id="buttons-view"></div>
+
+    <form id="movie-form">
+      <label for="movie-input">Add a Movie, Yo!</label>
+      <input type="text" id="movie-input"><br>
+
+      <!-- Button triggers new movie to be added -->
+      <input id="add-movie" type="submit" value="Add a Movie, Yo!">
+    </form>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+      let imageData = {}
+      
+
+      function addAjaxResultsToObj() {
+
+      }
+
+      buttonObj.cats = [{
+        static: '.jpg'
+      }, {
+        static: '.jpg'
+      }]
+      // Initial array of movies
+      var movies = ["The Matrix", "The Notebook", "Mr. Nobody", "The Lion King"];
+
+      // Generic function for capturing the movie name from the data-attribute
+      function alertMovieName() {
+        var movieName = $(this).attr("data-name");
+        alert(movieName);
+      }
+
+      function renderButtons() {
+        $("#buttons-view").empty();
+        for (var i = 0; i < movies.length; i++) {
+          var a = $("<button>");
+          a.addClass("movie");
+          a.attr("data-name", movies[i]);
+          a.text(movies[i]);
+          $("#buttons-view").append(a);
+        }
+      }
+
+      $("#add-movie").on("click", function (event) {
+        event.preventDefault();
+        var movie = $("#movie-input").val().trim();
+
+        // Adding the movie from the textbox to our array
+        movies.push(movie);
+
+        // Calling renderButtons which handles the processing of our movie array
+        renderButtons();
+
+      });
+
+      // Function for displaying the movie info
+      // We're adding a click event listener to all elements with the class "movie"
+      // We're adding the event listener to the document because it will work for dynamically generated elements
+      // $(".movies").on("click") will only add listeners to elements that are on the page at that time
+      $(document).on("click", ".movie", alertMovieName);
+
+      // Calling the renderButtons function to display the intial buttons
+      renderButtons();
+    </script>
+  </div>
 </body>
 
 </html>
+var queryURL = "https://api.giphy.com/v1/gifs/trending?api_key=BkaUZZWcFij6J7AoQj3WtPb1R2p9O6V9";
+
+$.ajax({
+url: queryURL,
+method: "GET"
+}).then(function(response) {
+console.log(response);
+});

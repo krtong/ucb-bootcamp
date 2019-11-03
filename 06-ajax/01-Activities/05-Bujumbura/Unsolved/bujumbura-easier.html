@@ -8,15 +8,15 @@
 
 <body>
   <!-- Retrieved data will be dumped here -->
-  <div class="city"></div>
-  <div class="wind"></div>
-  <div class="humidity"></div>
-  <div class="temp"></div>
+  <div class="city">City: </div>
+  <div class="wind">Wind: </div>
+  <div class="humidity">Humidity: </div>
+  <div class="temp">Temp: </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript">
     // This is our API key. Add your own API key between the ""
-    var APIKey = "";
-
+    // var APIKey = "a448b20824a829df46169895466e5e13";
+    let APIKey = "166a433c57516f51dfab1f7edaed8413"
     // Here we are building the URL we need to query the database
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=Bujumbura,Burundi&appid=" + APIKey;
 
@@ -25,12 +25,29 @@
       url: queryURL,
       method: "GET"
     }).then(function(response) {
+      
+    let city = response.name;
+    let { windDeg, windSpeed } = response.wind;
+    let humidit = response.main.humidity;
+    let temp = response.main.wind;
+
+    console.log(city, windDeg, humidit, temp)
+
 
       // Create CODE HERE to Log the queryURL
+      console.log(queryURL)
+
       // Create CODE HERE to log the resulting object
+      console.log(response)
       // Create CODE HERE to transfer content to HTML
+      $(".city").append(city)
+      $(".wind").append(windDeg)
+      $(".humidity").append(humidit)
+      $(".temp").append(temp * (K - 273.15) * 1.80 + 32 )
+
+      $()
       // Create CODE HERE to calculate the temperature (converted from Kelvin)
-      // Hint: To convert from Kelvin to Fahrenheit: F = (K - 273.15) * 1.80 + 32
+      // Hint: To convert from Kelvin to Fahrenheit: F = 
       // Create CODE HERE to dump the temperature content into HTML
 
     });

@@ -12,12 +12,10 @@
   <img src="https://media3.giphy.com/media/W6LbnBigDe4ZG/200_s.gif" data-still="https://media3.giphy.com/media/W6LbnBigDe4ZG/200_s.gif" data-animate="https://media3.giphy.com/media/W6LbnBigDe4ZG/200.gif" data-state="still" class="gif">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript">
+
+  traditional.
     $(".gif").on("click", function() {
-      // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
       var state = $(this).attr("data-state");
-      // If the clicked image's state is still, update its src attribute to what its data-animate value is.
-      // Then, set the image's data-state to animate
-      // Else set src to the data-still value
       if (state === "still") {
         $(this).attr("src", $(this).attr("data-animate"));
         $(this).attr("data-state", "animate");
@@ -26,6 +24,23 @@
         $(this).attr("data-state", "still");
       }
     });
+
+
+//Good use of a ternary operator and backticks?
+    $(".gif").on("click", function() {
+      const state = $(this).attr("data-state") === "still" ? "animate" : "still";
+      $(this).attr("src", $(this).attr(`data-${state}`));
+      $(this).attr("data-state", state);
+    });
+
+//Good use of a ternary operator and backticks?
+$(".gif").on("click", function() {
+      const state = $(this).attr("data-state") === "still" ? "animate" : "still";
+      $(this).attr("src", $(this).attr(`data-${state}`));
+      $(this).attr("data-state", state);
+    });
+
+
   </script>
 </body>
 

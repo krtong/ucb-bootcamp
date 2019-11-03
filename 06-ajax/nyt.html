@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+
+<html class="no-js">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+    <!--Form Info-->
+    <div class="container">
+        <div class="row">
+            <div class="jumbotron jumbotron-fluid">
+                <div class="container">
+                    <h1 class="display-4">New York Times Search</h1>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+
+            <form>
+                <div class="form-group">
+                    <label for="search-term">Search Term</label>
+                    <input type="text" class="form-control" id="search-term" aria-describedby="emailHelp"
+                        placeholder="Search Term">
+                </div>
+
+                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                    <option selected>Number of Records to Retrieve</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="3">4</option>
+                    <option value="3">5</option>
+                </select>
+
+                <div class="form-group">
+                    <label for="start-year">Start Year (Optional)</label>
+                    <input type="text" class="form-control" id="start-year" placeholder="Enter Start Year Here">
+                </div>
+                <div class="form-group">
+                    <label for="end-year">End Year (Optional)</label>
+                    <input type="text" class="form-control" id="end-year" placeholder="Enter End Year Here">
+                </div>
+
+                <button type="submit" class="btn btn-primary" id="search">Search</button>
+                <button type="submit" class="btn btn-primary" id="clear-results">Clear Results</button>
+
+            </form>
+
+
+        </div>
+
+    </div>
+
+
+    <!-- links to js files and such -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script>
+        // end links to js files and such
+
+        function formSubmitButton(event) {
+            event.preventDefault();
+            var search = $("#search-term").val()
+            var number = $("#inlineFormCustomSelect").val()
+            var startDate = $("#start-year").val()
+            var endDate = $("#end-year").val()
+            var queryURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=" + search + "&api-key=xpAgRVW0VbnAfNPZKePLqKIfHNGimvLK"
+            if (startDate !== "") {
+                queryURL += "&begin_date="+startDate+"0101"
+            }
+            if (endDate !== "") {
+                queryURL += "&end_date="+endDate+"1231"
+            }
+
+            $.ajax({
+                url: queryURL,
+                method: "GET"
+            }).then(function (response) {
+                console.log(response)
+            })
+        };
+
+        $(document).on("click", "#search", formSubmitButton)
+    </script>
+</body>
+<!-- sup.... -->
+
+</html>

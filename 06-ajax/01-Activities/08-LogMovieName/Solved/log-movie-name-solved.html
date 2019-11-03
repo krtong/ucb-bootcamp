@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Favorite Movies</title>
+  <title>Giffy Gallery</title>
   <style type="text/css">
     button,
     div,
@@ -11,83 +11,129 @@
     input {
       margin: 10px;
     }
+
+    #add-shit-here {
+      display: flex;
+      flex-wrap: wrap;
+    }
   </style>
 </head>
 
 <body>
-
   <div class="container">
-    <h1>Movie Search</h1>
+    <h1>giphy Search</h1>
+    <header>
+      <div id="buttons-view"></div>
+    </header>
+    <div class="row">
+      <div class="col-5">
+        <div class="clean-gallery" id="add-shit-here"></div>
+      </div>
+      <div class="col-2">
+        <form id="giphy-form">
+          <label for="giphy-input">Add a giphy, Yo!</label>
+          <input type="text" id="giphy-input"><br>
+          <input id="add-giphy" type="submit" value="Add a giphy, Yo!">
+        </form>
+      </div>
+    </div>
 
-     <!-- Rendered Buttons will get Dumped Here  -->
-    <div id="buttons-view"></div>
-
-    <form id="movie-form">
-      <label for="movie-input">Add a Movie, Yo!</label>
-      <input type="text" id="movie-input"><br>
-
-      <!-- Button triggers new movie to be added -->
-      <input id="add-movie" type="submit" value="Add a Movie, Yo!">
-    </form>
-
+    <div id="prerender" style="display:none"></div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript">
-      // Initial array of movies
-      var movies = ["The Matrix", "The Notebook", "Mr. Nobody", "The Lion King"];
+      let giphys = ["The Matrix", "The Notebook", "Mr. Nobody", "The Lion King"];
+      let numOfGifs = 10;
+      let imgObj = {};
 
-      // Generic function for capturing the movie name from the data-attribute
-      function alertMovieName() {
-        var movieName = $(this).attr("data-name");
 
-        alert(movieName);
+      function renderGif(...e) {
+        // console.log(e)
+        let idx = $(this).attr("id")
+        let giphyName = $(this).attr("data-name");
+        let type = "animated"
+        let classes = "img-fluid"
+        $(this).attr("src", imgObj[giphyName][idx].animated);
+        $(this).attr("class", classes + " " + type)
       }
 
-      // Function for displaying movie data
-      function renderButtons() {
 
-        // Deleting the movies prior to adding new movies
-        // (this is necessary otherwise we will have repeat buttons)
-        $("#buttons-view").empty();
+      function renderStatic() {
+        let idx = $(this).attr("id")
+        let giphyName = $(this).attr("data-name");
+        let type = "static"
+        let classes = "img-fluid"
+        $(this).attr("src", imgObj[giphyName][idx].static);
+        $(this).attr("class", classes + " " + type)
+      }
 
-        // Looping through the array of movies
-        for (var i = 0; i < movies.length; i++) {
+      function renderImg() {
 
-          // Then dynamicaly generating buttons for each movie in the array
-          // This code $("<button>") is all jQuery needs to create the start and end tag. (<button></button>)
-          var a = $("<button>");
-          // Adding a class of movie to our button
-          a.addClass("movie");
-          // Adding a data-attribute
-          a.attr("data-name", movies[i]);
-          // Providing the initial button text
-          a.text(movies[i]);
-          // Adding the button to the HTML
-          $("#buttons-view").append(a);
+      }
+
+      function grabgiphyImages(titleStr, dataArr) {
+        let arr = []
+        dataArr.forEach(obj => {
+          let tempObj = {};
+          tempObj.static = obj.images['fixed_height_still'].url;
+          tempObj.animated = obj.images['fixed_height'].url;
+          tempObj.rating = obj.rating;
+          arr.push(tempObj)
+        });
+        imgObj[titleStr] = arr;
+      }
+
+
+      function alertgiphyName() {
+        $("#add-shit-here").empty();
+        let giphyName = $(this).attr("data-name");
+        if (imgObj[giphyName]) {
+          populateImages(imgObj[giphyName])
+        } else {
+          $.ajax({
+            url: `https://api.giphy.com/v1/gifs/search?api_key=FMm6h8iCj05LtP1gHs2RaqXNkERa7HxZ&q=${giphyName}&limit=${numOfGifs}&offset=0&rating=G&lang=en`,
+            method: "GET"
+          }).then(function (response) {
+            console.log("response", response)
+            grabgiphyImages(giphyName, response.data)
+            populateImages(imgObj[giphyName], giphyName);
+          });
         }
-      }
+      };
 
-      // This function handles events where one button is clicked
-      $("#add-movie").on("click", function(event) {
-        // Preventing the buttons default behavior when clicked (which is submitting a form)
+      function populateImages(dataObj, dataName) {
+        $("#add-shit-here").empty();
+        dataObj.forEach((imgObj, index) => {
+
+          $("#add-shit-here").append(`
+          <div id="div${index}"> 
+            <h3>Rating: ${imgObj.rating}</h3>
+            <img class="static" id="${index}" data-name="${dataName}"  src="${imgObj['static']}">
+          </div>
+          `)
+          $("#prerender").append(`<img src="${imgObj['animated']}"></div>`)
+        })
+      };
+
+
+      // let oneImage =  dataObj.data[i].images['480w_still'].url
+      function renderButtons() {
+        $("#buttons-view").empty();
+        giphys.forEach(giphy => {
+          $("#buttons-view").append(`<button class="giphy" data-name="${giphy}">${giphy}</button>`);
+        })
+      };
+
+      $("#add-giphy").on("click", function (event) {
         event.preventDefault();
-        // This line grabs the input from the textbox
-        var movie = $("#movie-input").val().trim();
-
-        // Adding the movie from the textbox to our array
-        movies.push(movie);
-
-        // Calling renderButtons which handles the processing of our movie array
+        let giphy = $("#giphy-input").val().trim();
+        giphys.push(giphy);
         renderButtons();
-
       });
 
-      // Function for displaying the movie info
-      // We're adding a click event listener to all elements with the class "movie"
-      // We're adding the event listener to the document because it will work for dynamically generated elements
-      // $(".movies").on("click") will only add listeners to elements that are on the page at that time
-      $(document).on("click", ".movie", alertMovieName);
+      $(document).on("click", ".giphy", alertgiphyName);
+      $(document).on("click", ".static", renderGif);
+      $(document).on("click", ".animated", renderStatic);
 
-      // Calling the renderButtons function to display the intial buttons
       renderButtons();
     </script>
   </div>

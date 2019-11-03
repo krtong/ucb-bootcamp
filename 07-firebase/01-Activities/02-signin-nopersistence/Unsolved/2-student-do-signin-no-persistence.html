@@ -87,14 +87,28 @@
     $("#add-user").on("click", function(event) {
       event.preventDefault();
 
+      // window.sessionStorage.push('hello')
       // Capture User Inputs and store them into variables
+      sessionStorage.setItem("member" ,JSON.stringify({
+         name : $("#name-input").val(),
+         email : $("#email-input").val(),
+         age : $("age-input").val(),
+         comment : $("#comment-input").val(),
+      }));
 
-
+      renderInfo();
       // Console log each of the user inputs to confirm we are receiving them correctly
-
-
       // Output all of the new information into the relevant HTML sections
     });
+
+    let renderInfo = () => {
+      let member = JSON.parse(sessionStorage.getItem("member"));
+      $("#name-display").text(member.name);
+      $("#email-display").text(member.email);
+      $("age-display").text(member.age);
+      $("#comment-display").text(member.comment);
+    };
+    if (sessionStorage.getItem("member")) renderInfo();
 
   </script>
 

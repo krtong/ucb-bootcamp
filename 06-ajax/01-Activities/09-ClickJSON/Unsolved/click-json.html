@@ -37,7 +37,28 @@
 
       // Function for dumping the JSON content for each button into the div
       function displayMovieInfo() {
+        console.log("event", event)
+        console.log("result", result)
+        let queryURL = `https://www.omdbapi.com/?t=god+father&y=&plot=short&apikey=trilogy`
+        $.ajax({
+      url: queryURL,
+      method: "GET"
+    }).then(function(response) {
+      var tBody = $("tbody");
+      var tRow = $("<tr>");
+      // Methods run on jQuery selectors return the selector they we run on
+      // This is why we can create and save a reference to a td in the same statement we update its text
+      var titleTd = $("<td>").text(response.Title);
+      var yearTd = $("<td>").text(response.Year);
+      var actorsTd = $("<td>").text(response.Actors);
+      // Append the newly created table data to the table row
+      tRow.append(titleTd, yearTd, actorsTd);
+      // Append the table row to the table body
+      tBody.append(tRow);
+    });
 
+        console.log("event", event);
+        console.log("result", result);
         // YOUR CODE GOES HERE!!! HINT: You will need to create a new div to hold the JSON.
 
       }
@@ -51,6 +72,8 @@
 
         // Looping through the array of movies
         for (var i = 0; i < movies.length; i++) {
+          console.log("movies[i]", movies[i]);
+          console.log("movies", movies);
 
           // Then dynamicaly generating buttons for each movie in the array
           // This code $("<button>") is all jQuery needs to create the beginning and end tag. (<button></button>)

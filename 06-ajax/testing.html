@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 ​
+
 <head>
   <meta charset="utf-8">
   <title>Favorite Movies</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
 </head>
 ​
+
 <body>
   <div class="container">
     <h2>Basic Table</h2>
@@ -39,28 +41,38 @@
           <td>${response.Year}</td>
           <td>${response.Actors}</td>
         </tr>`
-        
+
       $("#add-shit-here").append($html);
     }
     // The below code fills in the first row of the table
-	
-	const appendMovie = (titleString) => {
-      var queryURL = "https://www.omdbapi.com/?t=" + titleString + "&apikey=trilogy";
-      
-    $.ajax({
-      url: queryURL,
-      method: "GET"
-    }).then(cb);
-	}
-	
-	appendMovie("batman")
-	appendMovie("bee movie")
-	appendMovie("yogi bear")
-	appendMovie("your mom")
-	appendMovie("garfield")
-	
-    
+
+    const appendMovie = (titleString) => {
+      $.ajax({
+        url: `https://www.omdbapi.com/?t=${titleString}&apikey=trilogy`,
+        method: "GET"
+      }).then(cb);
+    }
+
+    appendMovie("batman")
+    appendMovie("bee movie")
+    appendMovie("yogi bear")
+    appendMovie("your mom")
+    appendMovie("garfield")
+
+    const appendMovieS = (...movieS) => {
+      movieS.forEach(title => {
+        $.ajax({
+          url: `https://www.omdbapi.com/?t=${title}&apikey=trilogy`,
+          method: "GET"
+        }).then(cb);
+
+      })
+    }
+
+    appendMovieS("the ring", "thriller", "rocketeer", "dragon shit")
+
   </script>
 </body>
 ​
+
 </html>

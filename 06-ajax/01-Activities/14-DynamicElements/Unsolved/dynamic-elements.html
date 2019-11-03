@@ -32,13 +32,13 @@
         // make a variable named results and set it equal to response.data
 
         // =============== put step 2 in between these dashes ==================
-
+        let results = response.data
         // ========================
-
-        // for (var i = 0; i < results.length; i++) {
-
+        let html = '';
+        for (var i = 0; i < results.length; i++) {
+          console.log('hello', results[i].images.fixed_height)  b vxaz
         // Step 3: uncomment the for loop above and the closing curly bracket below.
-        // Make a div with jQuery and store it in a variable named animalDiv.
+        html += `<img src="${results[i].images.fixed_height.url}">` // Make a div with jQuery and store it in a variable named animalDiv.
         // Make a paragraph tag with jQuery and store it in a variable named p.
         // Set the inner text of the paragraph to the rating of the image in results[i].
         // Make an image tag with jQuery and store it in a variable named animalImage.
@@ -46,12 +46,11 @@
         // Append the p variable to the animalDiv variable.
         // Append the animalImage variable to the animalDiv variable.
         // Prepend the animalDiv variable to the element with an id of gifs-appear-here.
-
         // ============= put step 3 in between these dashes ======================
 
         // ==================================
-        // }
-
+        }
+        $("#gifs-appear-here").html(html)
       });
     });
   </script>

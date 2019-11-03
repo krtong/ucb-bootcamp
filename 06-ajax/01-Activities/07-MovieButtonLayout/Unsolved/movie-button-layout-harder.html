@@ -23,7 +23,7 @@
     <div id="buttons-view"></div>
 
     <form id="movie-form">
-      <label for="movie-input">Add a Movie, Yo!</label>
+      <label for="movie-input" val="check">Add a Mosvie, Yo!</label>
       <input type="text" id="movie-input"><br>
 
       <!-- Button triggers new movie to be added -->
@@ -36,16 +36,22 @@
 
       // Function for displaying movie data
       function renderButtons() {
-
+        movies.forEach(buttonText => {
+          $("#buttons-view").append(`<button class="movie-button">${buttonText}</button>`)
+        })
         // YOUR CODE GOES HERE
 
       }
 
       // This function handles events where one button is clicked
       $("#add-movie").on("click", function() {
-
+        event.preventDefault();
+        console.log($(this).val())
         // YOUR CODE GOES HERE
+        // let buttonText =  document.getElementById('movie-input').value;
+        let buttonText = $("#movie-input").val();
 
+        $("#buttons-view").append(`<button class="movie-button">${buttonText}</button>`);
       });
 
       // Calling the renderButtons function to display the initial list of movies

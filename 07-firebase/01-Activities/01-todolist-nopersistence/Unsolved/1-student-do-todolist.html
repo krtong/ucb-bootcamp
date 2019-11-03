@@ -38,35 +38,16 @@
     //  ============================= START CODING BELOW! =============================================
 
     // Create an initial toDoCount variable
+      let toDoCount = 0;
     //  On Click event associated with the add-to-do function
     $("#add-to-do").on("click", function(event) {
       // prevent form from submitting
       event.preventDefault();
-
-      // Get the to-do "value" from the textbox and store it a variable
-
-
-      // Create a new variable that will hold a "<p>" tag.
-      // Then give it an ID in the following form:
-      // "item-4" or "item-3" or "item-99", where the number is equal to toDoCount.
-      // Then set the to-do "value" as text to this <p> element.
-
-
-      // Create a button with unique identifiers based on what number it is in the list. Again use jQuery to do this.
-      // Give your button a data attribute called data-to-do and a class called "checkbox".
-      // Lastly add the letter X inside.
-
-
-      // Append the button to the to do item
-
-
-      // Add the button and toDoItem to the to-dos div
-
-
-      // Clear the textbox when done
-
+          $("#to-dos").append(`<p id="to-do-${toDoCount}" to-do-num="${toDoCount}">${$("#to-do").val()} <button class="checkbox" id="btn-${toDoCount}"">x</button></p>`)
+          $("#to-do").empty()
 
       // Add to the toDoCount
+          toDoCount++
 
     });
 
@@ -76,7 +57,8 @@
     $(document.body).on("click", ".checkbox", function() {
 
       // Get the number of the button from its data attribute and hold in a variable called  toDoNumber.
-
+      let toDo = $(this).attr("to-do-num");
+      toDo.remove()
 
       // Select and Empty the specific <p> element that previously held the to do item number.
 
