@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>Hello, world!</title>
+</head>
+
+<body>
+    <div class="container">
+        <!-- jumbotron -->
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4">Fluid jumbotron</h1>
+                <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.
+                </p>
+            </div>
+        </div>
+
+        <div class="card text-center">
+            <div class="card-header">
+                Current Employees
+            </div>
+            <div class="card-body">
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Employee Name</th>
+                            <th scope="col">Role</th>
+                            <th scope="col">Months Worked</th>
+                            <th scope="col">Monthly Rate($)</th>
+                            <th scope="col">Total Billed($)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="add-shit-here">
+                        <!-- 
+                        <tr>
+                            <td>${name}</td>
+                            <td>${role}</td>
+                            <td>${monthsWorked}</td>
+                            <td>${rate}</td>
+                            <td>${monthlyRate}</td>
+                        </tr>
+                         -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <form>
+            <div class="form-row">
+                <div class="col">
+                    <label for="Name">Employee Name</label>
+                    <input id="name-form" type="text" class="form-control" placeholder="John Smith">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <label for="Role">Role</label>
+                    <input id="role-form" type="text" class="form-control" placeholder="King">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <label for="Date">Start Date </label>
+                    <input id="date-form" type="text" class="form-control" placeholder="June 14, 2019">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <label for="Rate">Monthy Rate (without ',' and '$')</label>
+                    <input id="rate-form" type="text" class="form-control" placeholder="50000">
+                </div>
+            </div>
+            <button id="submit-form" type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-database.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <script>
+        // Initialize Firebase
+        firebase.initializeApp({
+            apiKey: "get ur own",
+            authDomain: "in-class-projects.firebaseapp.com",
+            databaseURL: "https://in-class-projects.firebaseio.com",
+            projectId: "in-class-projects",
+            storageBucket: "in-class-projects.appspot.com",
+            messagingSenderId: "613351780170",
+            appId: "1:613351780170:",
+            measurementId: "G-B5NN3V4T7J"
+        });
+
+        const ref = firebase.database().ref('/employee-data');
+        let usersRef = null;
+        let localSnap = {};
+        const todaysDate = JSON.stringify(new Date());
+        const original = (new Date())
+        const today = {
+            year: todaysDate.slice(1, 5),
+            month: todaysDate.slice(6, 8),
+            day: todaysDate.slice(9, 11),
+            original
+        }
+        const validRoles = ['manager', 'assistant manager', 'sales associate', 'book keeper']
+
+        //changes some placeholders in the form to something more dynamic...current date, validRoles, etc..
+        $("#role-form").attr("placeholder",
+            `Valid Roles:${validRoles.map(a => a.split(' ').map(b => ` ${b[0].toUpperCase()}${b.slice(1)}`).join(''))}`
+            )
+        $("#date-form").attr("placeholder",
+            `${[, 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'][today.month]} ${parseInt(today.day)}, ${today.year}`
+            );
+        //on form submit, add new person to database.
+        function addInfoToFireBase() {
+            event.preventDefault();
+            let tempObj = {}
+            tempObj.name = $("#name-form").val().trim();
+            const role = $("#role-form").val().trim()
+            tempObj.role = validRoles.indexOf(role.toLowerCase()) > -1 ? role : 'Janitor';
+            const rate = parseFloat($("#rate-form").val()).toFixed(2);
+            tempObj.rate = rate ? rate : 0;
+            const original = $("#date-form").val();
+            const date = JSON.stringify(new Date(original));
+            tempObj.date = date === 'null' ? today : {
+                original,
+                year: date.slice(1, 5) > today.year ? today.year : date.slice(1, 5),
+                month: date.slice(6, 8),
+                day: date.slice(9, 11),
+            };
+            if (usersRef) usersRef.set(tempObj)
+            else ref.push(tempObj);
+            usersRef = null;
+            $("input").val('');
+        }
+
+        //if there's any change to the database...
+        ref.on("value", function (snap) {
+            localSnap = snap.val()
+            let html = '';
+
+            const formatter = new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD',
+                minimumFractionDigits: 2
+            });
+
+            for (let key in localSnap) {
+                const employee = localSnap[key];
+                let {name,rate,role,date} = employee;
+                const monthsWorked = Math.floor(((today.year - date.year) * 12) + (today.month - date.month) + (
+                    (today.day - date.day) / 30));
+                const monthlyRate = formatter.format(monthsWorked * rate);
+                rate = formatter.format(rate);
+
+                html += `
+                <tr class="table-row" id="${key}">
+                    <td>${name}</td>
+                    <td>${role}</td>
+                    <td>${monthsWorked}</td>
+                    <td>${rate}</td>
+                    <td>${monthlyRate}</td>
+                </tr>`;
+            }
+
+            $("#add-shit-here").html(html);
+        });
+
+        const moveInfoToForm = function () {
+            let id = $(this).attr("id")
+            let {name,rate,role,date} = localSnap[id]
+            $("#name-form").val(name);
+            $("#rate-form").val(rate);
+            $("#role-form").val(role);
+            $("#date-form").val(date.original);
+            usersRef = firebase.database().ref('/employee-data/' + id)
+        }
+
+        const changeInfoOnFireBase = function () {
+            let id = $(this).attr("id");
+            console.log(id)
+            let userRef = ref.child(id);
+        }
+
+        $(document).on("click", "#submit-form", addInfoToFireBase);
+        $(document).on("click", ".table-row", moveInfoToForm)
+        // $(document).on("click", "#change-form", changeInfoOnFireBase)
+    </script>
+</body>
+
+</html>

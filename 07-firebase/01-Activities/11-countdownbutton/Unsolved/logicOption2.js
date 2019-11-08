@@ -1,5 +1,16 @@
 // Initialize Firebase (YOUR OWN APP)
+const firebaseConfig = {
+  apiKey: "AIzaSyDmqOlWMugKxjAWS8kgpiMF2KAqGugC5Cg",
+  authDomain: "click-20259.firebaseapp.com",
+  databaseURL: "https://click-20259.firebaseio.com",
+  projectId: "click-20259",
+  storageBucket: "click-20259.appspot.com",
+  messagingSenderId: "940004811145",
+  appId: "1:940004811145:web:ebe4af8fb822de9ce04158"
+};
 
+
+firebase.initializeApp(firebaseConfig);
 // Set Initial Counter
 var initialValue = 100;
 

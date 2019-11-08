@@ -4,34 +4,53 @@
 
 
 // Assign the reference to the database to a variable named 'database'
-// var database = ...
+var firebaseConfig = {
+  apiKey: "AIzaSyDmqOlWMugKxjAWS8kgpiMF2KAqGugC5Cg",
+  authDomain: "click-20259.firebaseapp.com",
+  databaseURL: "https://click-20259.firebaseio.com",
+  projectId: "click-20259",
+  storageBucket: "click-20259.appspot.com",
+  messagingSenderId: "940004811145",
+  appId: "1:940004811145:web:ebe4af8fb822de9ce04158"
+};
 
+firebase.initializeApp(firebaseConfig);
 
+// let database = firebase.database()
 // Initial Values
 var initialBid = 0;
 var initialBidder = "No one :-(";
 var highPrice = initialBid;
 var highBidder = initialBidder;
 
+firebase.database().ref().set({
+  initialBid,
+  initialBidder,
+  highPrice,
+  highBidder,
+})
+
 // --------------------------------------------------------------
 
 // At the initial load and subsequent value changes, get a snapshot of the stored data.
 // This function allows you to update your page in real-time when the firebase database changes.
-database.ref().on("value", function(snapshot) {
-
+firebase.database().ref().on("value", function(snapshot) {
+console.log(snapshot.val())
   // If Firebase has a highPrice and highBidder stored (first case)
   if (snapshot.child("highBidder").exists() && snapshot.child("highPrice").exists()) {
 
     // Set the variables for highBidder/highPrice equal to the stored values in firebase.
-    // highPrice = ...
-    // highBidder = ...
+    highPrice = snapshot.val().highPrice;
+    highBidder = snapshot.val().highBidder;
 
 
     // Change the HTML to reflect the stored values
 
+    $("#highest-price").html(highPrice);
+    $("#highest-bidder").html(highBidder);
 
     // Print the data to the console.
-
+    console.log("^ price", highPrice, "^ bidder", highBidder)
 
   }
 
@@ -39,10 +58,12 @@ database.ref().on("value", function(snapshot) {
   else {
 
     // Change the HTML to reflect the initial values
-
+    $("#highest-price").html(highPrice);
+    $("#highest-bidder").html(highBidder);
 
     // Print the data to the console.
 
+    console.log("^ price", highPrice, "^ bidder", highBidder)
 
   }
 
